@@ -20,12 +20,14 @@ jobs:
 
       - name: Publish app
         run: dotnet publish -c Release
-      
+
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
           html_path: ${{ env.PUBLISH_DIR }}/index.html
           base_href: /nobodynuf.github.io/
+      - name: list the dir because i dont know how to debug stuff in CI
+        run: dir ${{ env.PUBLISH_DIR }}
 
       - name: GitHub Pages
         if: success()
@@ -33,5 +35,6 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: ${{ env.PUBLISH_DIR }}
+          jekill: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
