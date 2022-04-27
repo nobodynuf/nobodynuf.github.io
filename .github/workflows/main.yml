@@ -28,6 +28,9 @@ jobs:
           base_href: /nobodynuf.github.io/
       - name: list the dir because i dont know how to debug stuff in CI
         run: dir ${{ env.PUBLISH_DIR }}
+      
+      - name: i dont know, make a .no-jekyll i guess
+        run: cat > ${{ env.PUBLISH_DIR }}/.nojekyll
 
       - name: GitHub Pages
         if: success()
@@ -35,6 +38,6 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: ${{ env.PUBLISH_DIR }}
-          jekyll: false
+          jekyll: False
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
