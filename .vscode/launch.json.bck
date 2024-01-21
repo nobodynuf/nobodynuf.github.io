@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: nobodynuf.github.io aa",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/nobodynuf.github.io/nobodynuf.github.io.csproj",
+            "launchConfigurationId": "TargetFramework=;nobodynuf.github.io"
+        },
+        {
+            "name": "c# page.nobodynuf.zip",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/page/page.csproj",
+            
+        }
+    ]
+}

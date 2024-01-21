@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: page Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/page/page.csproj", 
+            
+        },
+        {
+            "name": "C#: nobodynuf.github.io",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/nobodynuf.github.io/nobodynuf.github.io.csproj",
+            "launchConfigurationId": "TargetFramework=;nobodynuf.github.io"
+        },
+
+        {
+            "name": ".NET Core Launch (Blazor Standalone)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "run"
+            ],
+            "cwd": "${workspaceFolder}/page/",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+    ]}
