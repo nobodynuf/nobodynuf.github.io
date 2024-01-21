@@ -2,7 +2,8 @@
 # based on https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml 
 name: CI
 env:
-  PUBLISH_DIR: nobodynuf.github.io/bin/Release/netstandard2.1/publish/nobodynuf.github.io/dist
+  PUBLISH_DIR: page/bin/Release/net7.0/publish/nobodynuf.github.io/dist
+  #PUBLISH_DIR: nobodynuf.github.io/bin/Release/netstandard2.1/publish/nobodynuf.github.io/dist
 on:
   push:
     branches: [ master ]
