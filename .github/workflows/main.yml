@@ -22,12 +22,12 @@ jobs:
       - name: Publish app
         run: dotnet publish -c Release
 
-      - name: Rewrite base href
-        uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-        with:
-          html_path: ${{ env.PUBLISH_DIR }}/index.html
+      #- name: Rewrite base href
+      #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      #  with:
+      #    html_path: ${{ env.PUBLISH_DIR }}/index.html
           # base_href: /nobodynuf.github.io/
-          base_href: /
+      #    base_href: /
       - name: list the dir because i dont know how to debug stuff in CI
         run: dir ${{ env.PUBLISH_DIR }}
       
