@@ -22,6 +22,9 @@ jobs:
       - name: Publish app
         run: dotnet publish -c Release
 
+      - name: Make the CNAME file to allow my site to be visible in vanity url
+        run: echo "page.nobodynuf.zip" > $ {{ env.PUBLISH_DIR }}/CNAME
+      
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       #  with:
