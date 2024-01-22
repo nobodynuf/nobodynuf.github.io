@@ -1,6 +1,9 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject NavigationManager MyNavigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">nobodynuf.github.io</a>
+        @* <a class="navbar-brand" href="">@(MyNavigationManager.BaseUri)</a> *@
+        <a class="navbar-brand" href="">nobodynuf.zip</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,19 +14,42 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <i class="bi bi-house-fill"></i>&nbsp;Home
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" href="myself">
+                <i class="bi bi-person-arms-up"></i>&nbsp;About myself
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="professionally">
+                <i class="bi bi-briefcase"></i>&nbsp;Professionally speaking
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="hobbies">
+                <i class="bi bi-balloon-heart"></i>&nbsp;About my hobbies
+            </NavLink>
+        </div>
+        <div class="nav-item row px-3 text-center">
+            <div class="col-3">
+                <a class="btn" href="https://x.com/nobodynuf" role="button"><i class="bi bi-twitter-x"></i></a>
+            </div>
+            <div class="col-3">
+                <a class="btn " href="https://github.com/nobodynuf" role="button"><i class="bi bi-github"></i></a>
+            </div>
+            <div class="col-3">
+                <a class="btn " href="mailto:talkto(_att-)nobodynuf.zip" role="button"><i
+                        class="bi bi-envelope-at"></i></a>
+            </div>
+            <div class="col-3">
+                <a class="btn" href="https://steamcommunity.com/id/nobodynuf/" role="button"><i
+                        class="bi bi-steam"></i></a>
+            </div>
+
+        </div>
+
     </nav>
 </div>
 

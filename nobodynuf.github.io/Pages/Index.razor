@@ -1,13 +1,28 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+@code {
+    public string ReturnCoolColor()
+    {
+        string[] colors = new string[] { "green", "blue", "red",/* "yellow",*/ "cyan", "orange", "magenta" };
+        return colors[Random.Shared.Next(0, colors.Length)];
+    }
+    public RenderFragment? CreateCoolText(string text) =>
+    @<text>
+        @foreach(var item in text.ToCharArray())
+    {
+        <span style="color:@ReturnCoolColor()">@item</span>
+    }
+    </text>;
+}
+
+
+<PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-My name is nobodynuf. I know a lil bit of english, c#, sql & js.
+<marquee scrollamount="12">Welcome to my website!!!</marquee>
 
-I bought a funny ending domain so ill just use it to upload random stuff.
+<p>My name is nobodynuf. This is my cool interwebs</p>
 
-<Placeholder />
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p>You can know more about me click-ing <a href="/myself">here</a></p>
+&copy;@CreateCoolText($"{DateTime.Now.Year} - nobodynuf")
