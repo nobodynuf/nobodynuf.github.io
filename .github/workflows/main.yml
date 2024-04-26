@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
-# based on https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml 
+# based on https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml
 name: CI
 env:
   PUBLISH_DIR: nobodynuf.github.io/bin/Release/net7.0/publish/wwwroot/
   #PUBLISH_DIR: nobodynuf.github.io/bin/Release/netstandard2.1/publish/nobodynuf.github.io/dist
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,19 +24,15 @@ jobs:
 
       - name: Make the CNAME file to allow my site to be visible in vanity url
         run: echo "page.nobodynuf.zip" > ${{ env.PUBLISH_DIR }}/CNAME
-      - name: making a folder ffs
-        run: mkdir ./.well-known
-      - name: Make the discord file verification 
-        run: echo "dh=4943e2e36c3515d10e2d13b6be7f2e50549184a7" > ${{ env.PUBLISH_DIR }}.well-known/discord
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       #  with:
       #    html_path: ${{ env.PUBLISH_DIR }}/index.html
-          # base_href: /nobodynuf.github.io/
+      # base_href: /nobodynuf.github.io/
       #    base_href: /
       - name: list the dir because i dont know how to debug stuff in CI
         run: dir ${{ env.PUBLISH_DIR }}
-      
+
       - name: i dont know, make a .no-jekyll i guess
         run: cat > ${{ env.PUBLISH_DIR }}/.nojekyll
 
