@@ -25,7 +25,7 @@ jobs:
       - name: Make the CNAME file to allow my site to be visible in vanity url
         run: echo "page.nobodynuf.zip" > ${{ env.PUBLISH_DIR }}/CNAME
       - name: Make the discord file verification 
-        run: mkdir .well-known && echo "dh=4943e2e36c3515d10e2d13b6be7f2e50549184a7" > ${{ env.PUBLISH_DIR }}/.well-known/discord
+        run: mkdir .well-known && echo "dh=4943e2e36c3515d10e2d13b6be7f2e50549184a7" > ${{ env.PUBLISH_DIR }}.well-known/discord
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       #  with:
