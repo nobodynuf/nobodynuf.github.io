@@ -339,4 +339,30 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-# gabo sos puro gil ermano 20210324
+# remove node stuff just in case
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+/nobodynuf.github.io/wwwroot/funny-react-thing
+/NewReport1.upgrade.json

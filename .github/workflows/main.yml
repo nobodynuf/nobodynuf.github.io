@@ -2,7 +2,8 @@
 # based on https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml
 name: CI
 env:
-  PUBLISH_DIR: nobodynuf.github.io/bin/Release/net7.0/publish/wwwroot/
+  PUBLISH_DIR: nobodynuf.github.io/bin/Release/net9.0/publish/wwwroot/
+  #PUBLISH_DIR: nobodynuf.github.io/bin/Release/net7.0/publish/wwwroot/
   #PUBLISH_DIR: nobodynuf.github.io/bin/Release/netstandard2.1/publish/nobodynuf.github.io/dist
 on:
   push:
@@ -19,11 +20,28 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Me thinks we should build the funny react thing portion of the app idk
+      # here  is a ref, ur welcome
+      # https://medium.com/@pvasu3658/continuous-integration-and-continuous-deployment-ci-cd-pipeline-for-your-vite-react-app-fc0c8a0052b7
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24
+
+      - name: install node modules  idk
+        run: npm --prefix /nobodynuf.github.io/funny-react-thing/ install
+      
+      - name: time to build the funny react thing
+        run: npm --prefix /nobodynuf.github.io/funny-react-thing/ run build  
+
       - name: Publish app
         run: dotnet publish -c Release
 
       - name: Make the CNAME file to allow my site to be visible in vanity url
         run: echo "page.nobodynuf.zip" > ${{ env.PUBLISH_DIR }}/CNAME
+
+      - name: Ok, time to copy the funny dist folder
+        run: copy "/nobodynuf.github.io/funny-react-thing/dist/*.*" "${{ env.PUBLISH_DIR }}/funny-react-thing"
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       #  with:
