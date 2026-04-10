@@ -29,10 +29,10 @@ jobs:
           node-version: 24
 
       - name: install node modules  idk
-        run: npm --prefix nobodynuf.github.io/funny-react-thing/ install
+        run: npm --prefix funny-react-thing/ install
       
       - name: time to build the funny react thing
-        run: npm --prefix nobodynuf.github.io/funny-react-thing/ run build  
+        run: npm --prefix funny-react-thing/ run build  
 
       - name: Publish app
         run: dotnet publish -c Release
