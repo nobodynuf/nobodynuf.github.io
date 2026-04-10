@@ -41,7 +41,7 @@ jobs:
         run: echo "page.nobodynuf.zip" > ${{ env.PUBLISH_DIR }}/CNAME
 
       - name: Ok, time to copy the funny dist folder
-        run: copy "/nobodynuf.github.io/funny-react-thing/dist/*.*" "${{ env.PUBLISH_DIR }}/funny-react-thing"
+        run: cp -r funny-react-thing/dist/*.* ${{ env.PUBLISH_DIR }}/funny-react-thing/
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       #  with:
