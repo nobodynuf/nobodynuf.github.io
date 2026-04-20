@@ -5,6 +5,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "",
+  optimizeDeps: {
+    exclude: ["@huggingface/transformers"],
+  },
+  worker: {
+    format: "es",
+  },
   // build: {
   //   outDir: "../nobodynuf.github.io/wwwroot/funny-react-thing",
   //   emptyOutDir: true,
