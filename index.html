@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>im nobodynuf</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="nobodynuf.github.io.styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="fixed position-fixed fixed-bottom website-rotation-button-container" >
+        <i class="bi bi-arrow-repeat website-rotation-button"></i>
+    </div>
+
+    <div id="app" class="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        const wrapper = document.querySelector('.app');
+        const maxX = wrapper.clientWidth;
+        const maxY = wrapper.clientHeight;
+
+
+        function handleDeviceMotion(event) {
+            var x = event.beta;
+            var y = event.gamma;
+
+            if (x > 90) {
+                x = 90;
+            }
+            if (x < -90) {
+                x = -90;
+            }
+
+            // shift to portrait
+            x += 90;
+            y += 90;
+            // TODO: 'member to check firefox and other browsers coordinate systems idk
+            wrapper.style.rotate = `${(maxY * y) / 180 - 45 }deg`;
+
+        } 
+
+        function requestSensorPermission() {
+            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            window.addEventListener('deviceorientation', handleDeviceMotion);
+                        } else {
+                            console.error("Permission denied to access device orientation.");
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                window.addEventListener('deviceorientation', handleDeviceMotion);
+            }
+        }
+
+        function handleWebsiteRotation() {
+            if (wrapper.style.rotate !== '0deg') {
+                wrapper.style.rotate = '0deg';
+                removeEventListener('deviceorientation', handleDeviceMotion);
+
+            } else {
+                // time to add the funny function
+                requestSensorPermission();
+            }
+
+        }
+
+        (function () { document.querySelector('.website-rotation-button').addEventListener('click', handleWebsiteRotation) })();
+    </script>
+</body>
+
+</html>
