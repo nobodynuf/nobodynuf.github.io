@@ -14,8 +14,11 @@
 </head>
 
 <body>
+    <div class="fixed position-fixed fixed-bottom website-rotation-button-container" >
+        <i class="bi bi-arrow-repeat website-rotation-button"></i>
+    </div>
 
-    <div id="app">
+    <div id="app" class="app">
         <svg class="loading-progress">
             <circle r="40%" cx="50%" cy="50%" />
             <circle r="40%" cx="50%" cy="50%" />
@@ -29,6 +32,57 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        const wrapper = document.querySelector('.app');
+        function handleDeviceMotion(event) {
+            var x = event.beta;
+            var y = event.gamma;
+
+            if (x > 90) {
+                x = 90;
+            }
+            if (x < -90) {
+                x = -90;
+            }
+
+            // shift to portrait
+            x += 90;
+            y += 90;
+            // TODO: 'member to check firefox and other browsers coordinate systems idk
+            wrapper.style.rotate = `${(y) / 180 - 100}deg`;
+
+        } 
+
+        function requestSensorPermission() {
+            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            window.addEventListener('deviceorientation', handleDeviceMotion);
+                        } else {
+                            console.error("Permission denied to access device orientation.");
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                window.addEventListener('deviceorientation', handleDeviceMotion);
+            }
+        }
+
+        function handleWebsiteRotation() {
+            if (wrapper.style.rotate !== '0deg') {
+                wrapper.style.rotate = '0deg';
+                removeEventListener('deviceorientation', handleDeviceMotion);
+
+            } else {
+                // time to add the funny function
+                requestSensorPermission();
+            }
+
+        }
+
+        (function () { document.querySelector('.website-rotation-button').addEventListener('click', handleWebsiteRotation) })();
+    </script>
 </body>
 
 </html>
