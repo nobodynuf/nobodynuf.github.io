@@ -34,6 +34,10 @@
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
         const wrapper = document.querySelector('.app');
+        const maxX = wrapper.clientWidth;
+        const maxY = wrapper.clientHeight;
+
+
         function handleDeviceMotion(event) {
             var x = event.beta;
             var y = event.gamma;
@@ -49,7 +53,7 @@
             x += 90;
             y += 90;
             // TODO: 'member to check firefox and other browsers coordinate systems idk
-            wrapper.style.rotate = `${(y) / 180 - 100}deg`;
+            wrapper.style.rotate = `${(maxY) / 180 - 100}deg`;
 
         } 
 
